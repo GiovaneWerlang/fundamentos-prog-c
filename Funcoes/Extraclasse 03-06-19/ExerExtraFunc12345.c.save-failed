@@ -1,0 +1,94 @@
+/*4) Escreva uma função que recebes 3 valores reais X, Y e Z e que verifique se esses valores podem
+ser os comprimentos dos lados de um triângulo. Se formam triângulo informar o tipo:
+• Triângulo Equilátero: os comprimentos dos 3 lados são iguais.
+• Triângulo Isósceles: os comprimentos de 2 lados são iguais.
+• Triângulo Escaleno: os comprimentos dos 3 lados são diferentes.  */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "pauseLimpa.h"
+#include "diasVivo.h"
+#include "verificaPerfeito.h"
+#include "calculoPesoIdeal.h"
+
+int main(void)
+{
+    char repetir, SN;
+    int opcao, var1, var2, var3, retorno;
+    float result, varf1;
+
+    do
+    {
+        system("cls");
+        //
+            printf("Idade, Nº Perfeito, IMC, Tipo Triângulo, Palíndromo\n");
+            printf("1 - Cálculo dias de vida.\n");
+            printf("2 - Verificador de número perfeito.\n");
+            printf("3 - Cálculo de peso ideal.\n");
+            printf("4 - Identificador de tipo de triângulo.\n");
+            printf("5 - Verificador de número palíndromo.\n");
+            printf("Digite a opção desejada: ");
+            fflush(stdin);
+            scanf("%d",&opcao);
+
+            switch(opcao)
+            {
+                case 1:
+                {
+                    printf("Informe a data de seu nascimento (formato dd/mm/yyyy): ");
+                    scanf("%d/%d/%d",&var1, &var2, &var3);
+                    retorno = calculaDiasVida(var1,var2,var3);
+                    printf("Você está vivo a %d dias.\n",retorno);
+                    break;
+                }
+                case 2:
+                {
+                    printf("Informe o número que deseja verificar se é perfeito: ");
+                    scanf("%d",&var1);
+                    SN = verificaPerfeito(var1);
+
+                    if(SN=='s')
+                    {
+                        printf("O número %d é perfeito.\n",var1);
+                    }
+                    else
+                    {
+                        printf("O número %d não é perfeito.\n",var1);
+                    }
+                    break;
+                }
+                case 3:
+                {
+                    printf("Informe sua altura (formato x.xx): ");
+                    scanf("%f",&varf1);
+                    printf("Informe seu genero (m/M - Masculino f/F - Feminino): ");
+                    limparBuffer();
+                    scanf("%c",&SN);
+                    result = pesoIdeal(varf1, SN);
+                    printf("Seu peso ideal é %.2f.\n",result);
+                    break;
+                }
+                case 4:
+                {
+
+                    break;
+                }
+                case 5:
+                {
+
+                    break;
+                }
+                default:
+                {
+                    printf("Opção inválida, tente novamente.\n");
+                    break;
+                }
+            }
+        printf("\nExecutar novamente (s/S para sim)? ");
+        limparBuffer();
+        scanf("%c",&repetir);
+    }while(repetir=='s'||repetir=='S');
+
+    naoFechar();
+    return(0);
+}
